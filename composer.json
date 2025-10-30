@@ -1,0 +1,19 @@
+{
+    "name": "andre-moura/card-bank",
+    "description": "A simple card bank management system.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AndreMoura\\CardBank\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "André Moura",
+            "email": "andre.benedicto@etec.sp.gov.br"
+        }
+    ],
+    "require": {
+        "symfony/http-foundation": "^7.3"
+    }
+}
