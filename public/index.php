@@ -1,3 +1,3 @@
 <?php
 
-echo "Hello, Card Bank!";
+echo 'Hello, Card Bank Application!';
