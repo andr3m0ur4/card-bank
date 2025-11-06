@@ -17,6 +17,6 @@
         "symfony/http-foundation": "^7.3"
     },
     "scripts": {
-        "server": "php -S 0.0.0.0:$PORT -t public/"
+        "server": "php -S 0.0.0.0:8080 -t public/"
     }
 }
