@@ -20,7 +20,10 @@
         "friendsofphp/php-cs-fixer": "^3.89"
     },
     "scripts": {
-        "server": "php -S 0.0.0.0:8080 -t public/",
+        "server": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:8080 -t public/"
+        ],
         "cs-fixer:check": "vendor/bin/php-cs-fixer fix --diff --verbose --dry-run .",
         "cs-fixer:fix": "vendor/bin/php-cs-fixer fix ."
     }
