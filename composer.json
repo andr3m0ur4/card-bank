@@ -17,7 +17,9 @@
         "symfony/http-foundation": "^7.3"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.89"
+        "friendsofphp/php-cs-fixer": "^3.89",
+        "phpunit/phpunit": "^12",
+        "spatie/phpunit-watcher": "^1.24"
     },
     "scripts": {
         "server": [
@@ -25,6 +27,11 @@
             "php -S 0.0.0.0:8080 -t public/"
         ],
         "cs-fixer:check": "vendor/bin/php-cs-fixer fix --diff --verbose --dry-run .",
-        "cs-fixer:fix": "vendor/bin/php-cs-fixer fix ."
+        "cs-fixer:fix": "vendor/bin/php-cs-fixer fix .",
+        "test": "vendor/bin/phpunit --colors=always tests",
+        "test:watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/phpunit-watcher watch --colors=always tests < /dev/tty"
+        ]
     }
 }
