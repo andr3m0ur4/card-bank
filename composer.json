@@ -4,7 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "AndreMoura\\CardBank\\": "src/"
+            "CardCollection\\": "src/",
+            "CardCollection\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -14,12 +15,15 @@
         }
     ],
     "require": {
-        "symfony/http-foundation": "^7.3"
+        "symfony/http-foundation": "^7.3",
+        "symfony/routing": "^7.3"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.89",
         "phpunit/phpunit": "^12",
-        "spatie/phpunit-watcher": "^1.24"
+        "spatie/phpunit-watcher": "^1.24",
+        "symfony/test-pack": "^1.2",
+        "symfony/framework-bundle": "^7.3"
     },
     "scripts": {
         "server": [
