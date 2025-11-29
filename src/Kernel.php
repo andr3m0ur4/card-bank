@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
-    
+
     public function registerBundles(): iterable
     {
         return [
@@ -26,7 +26,7 @@ class Kernel extends BaseKernel
         $container->extension('framework', [
             'test' => true,
         ]);
-        
+
         // REGISTRA CONTROLLERS
         $services = $container->services();
         $services

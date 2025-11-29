@@ -16,14 +16,17 @@
     ],
     "require": {
         "symfony/http-foundation": "^7.3",
-        "symfony/routing": "^7.3"
+        "symfony/routing": "^7.3",
+        "symfony/orm-pack": "^2.5",
+        "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.89",
         "phpunit/phpunit": "^12",
         "spatie/phpunit-watcher": "^1.24",
         "symfony/test-pack": "^1.2",
-        "symfony/framework-bundle": "^7.3"
+        "symfony/framework-bundle": "^7.3",
+        "symfony/maker-bundle": "^1.65"
     },
     "scripts": {
         "server": [
@@ -32,10 +35,10 @@
         ],
         "cs-fixer:check": "vendor/bin/php-cs-fixer fix --diff --verbose --dry-run .",
         "cs-fixer:fix": "vendor/bin/php-cs-fixer fix .",
-        "test": "vendor/bin/phpunit --colors=always tests",
+        "test": "vendor/bin/phpunit tests",
         "test:watch": [
             "Composer\\Config::disableProcessTimeout",
-            "vendor/bin/phpunit-watcher watch --colors=always tests < /dev/tty"
+            "vendor/bin/phpunit-watcher watch tests < /dev/tty"
         ]
     }
 }
