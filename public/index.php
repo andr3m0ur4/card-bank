@@ -1,7 +1,7 @@
 <?php
 
 use AndreMoura\CardBank\Router;
-use Dotenv\Dotenv;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Response;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -11,8 +11,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
  */
 $router = require_once __DIR__ . '/../src/bootstrap.php';
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+$dotenv = new Dotenv();
+$dotenv->loadEnv(__DIR__ . '/../.env');
 
 /**
  * @var Response $response
