@@ -1,1 +1,1 @@
-web: composer server
+web: composer server:dev

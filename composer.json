@@ -29,10 +29,17 @@
         "symfony/maker-bundle": "^1.65"
     },
     "scripts": {
-        "server": [
+        "server:start": [
+            "Composer\\Config::disableProcessTimeout",
+            "composer run services:up && composer run server:dev"
+        ],
+        "server:dev": [
             "Composer\\Config::disableProcessTimeout",
             "php -S 0.0.0.0:8080 -t public/"
         ],
+        "services:up": "docker compose up -d",
+        "services:stop": "docker compose stop",
+        "services:down": "docker compose down",
         "cs-fixer:check": "vendor/bin/php-cs-fixer fix --diff --verbose --dry-run .",
         "cs-fixer:fix": "vendor/bin/php-cs-fixer fix .",
         "test": "vendor/bin/phpunit tests",
