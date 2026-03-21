@@ -12,4 +12,11 @@ $router->add('home', '/', function (): Response {
 
 $router->add('status', '/api/v1/status', [StatusController::class, 'showStatus']);
 
+$router->add('phpinfo', '/phpinfo', function (): Response {
+    ob_start();
+    phpinfo();
+    $phpInfo = ob_get_clean();
+    return new Response($phpInfo);
+});
+
 return $router;
