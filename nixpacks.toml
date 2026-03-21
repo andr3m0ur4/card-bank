@@ -1,2 +1,5 @@
 [phases.setup]
-nixPkgs = ["php", "phpExtensions.pdo", "phpExtensions.pdo_pgsql"]
+pkgs = ["php", "php83Packages.composer"]
+
+[start]
+cmd = 'composer server:dev'
