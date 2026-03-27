@@ -1,24 +1,25 @@
 <?php
 
-namespace CardCollection\Controllers;
+namespace CardCollection\Controller;
 
-use CardCollection\Infra\Database;
-use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Attribute\Route;
 
-class StatusController
+class StatusController extends AbstractController
 {
-    public function showStatus(): JsonResponse
+    #[Route('/api/v1/status', name: 'show_status')]
+    public function showStatus(EntityManagerInterface $entityManager): JsonResponse
     {
-        $updatedAt = (new DateTime())->format('Y-m-d H:i:s');
+        $updatedAt = (new \DateTime())->format('Y-m-d H:i:s');
 
-        $entityManager = Database::getEntityManager();
         $databaseVersion = $entityManager->getConnection()->getServerVersion();
 
         $databaseMaxConnections = intval($entityManager->getConnection()->fetchOne('SHOW max_connections'));
 
         $databasename = $_ENV['POSTGRES_DB'];
-        $databaseOpenedConnections = $entityManager->getConnection()->fetchOne("SELECT count(*)::int FROM pg_stat_activity WHERE datname = :databaseName", ['databaseName' => $databasename]);
+        $databaseOpenedConnections = $entityManager->getConnection()->fetchOne('SELECT count(*)::int FROM pg_stat_activity WHERE datname = :databaseName', ['databaseName' => $databasename]);
 
         return new JsonResponse([
             'updated_at' => $updatedAt,

@@ -2,9 +2,14 @@
     "name": "andre-moura/card-bank",
     "description": "A simple card bank management system.",
     "license": "MIT",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "CardCollection\\": "src/",
+            "CardCollection\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "CardCollection\\Tests\\": "tests/"
         }
     },
@@ -15,25 +20,67 @@
         }
     ],
     "require": {
-        "symfony/http-foundation": "^7.3",
-        "symfony/routing": "^7.3",
-        "symfony/orm-pack": "^2.5",
-        "symfony/dotenv": "^7.4"
+        "php": ">=8.2",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "doctrine/doctrine-bundle": "^2.18",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/orm": "^3.6",
+        "symfony/console": "7.4.*",
+        "symfony/dotenv": "7.4.*",
+        "symfony/flex": "^2",
+        "symfony/framework-bundle": "7.4.*",
+        "symfony/runtime": "7.4.*",
+        "symfony/yaml": "7.4.*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.89",
         "phpunit/phpunit": "^12",
         "spatie/phpunit-watcher": "^1.24",
-        "symfony/test-pack": "^1.2",
+        "symfony/browser-kit": "7.4.*",
+        "symfony/css-selector": "7.4.*",
         "symfony/framework-bundle": "^7.3",
         "symfony/maker-bundle": "^1.65"
     },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "bump-after-update": true,
+        "sort-packages": true
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php82": "*"
+    },
     "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
         "server:start": [
             "Composer\\Config::disableProcessTimeout",
             "composer run services:up && composer run server:dev"
         ],
         "server:dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "symfony server:start --port=8080"
+        ],
+        "server:prod": [
             "Composer\\Config::disableProcessTimeout",
             "php -S 0.0.0.0:8080 -t public/"
         ],
@@ -47,5 +94,15 @@
             "Composer\\Config::disableProcessTimeout",
             "vendor/bin/phpunit-watcher watch tests < /dev/tty"
         ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.4.*"
+        }
     }
+
 }

@@ -1,22 +1,9 @@
 <?php
 
-use AndreMoura\CardBank\Router;
-use Symfony\Component\Dotenv\Dotenv;
-use Symfony\Component\HttpFoundation\Response;
+use CardCollection\Kernel;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
-/**
- * @var Router $router
- */
-$router = require_once __DIR__ . '/../src/bootstrap.php';
-
-$dotenv = new Dotenv();
-$dotenv->loadEnv(__DIR__ . '/../.env');
-
-/**
- * @var Response $response
- */
-$response = $router->dispatch($_SERVER['PATH_INFO'] ?? '/');
-
-$response->send();
+return function (array $context) {
+    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+};

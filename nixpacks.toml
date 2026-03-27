@@ -2,4 +2,4 @@
 pkgs = ["php", "php83Packages.composer"]
 
 [start]
-cmd = 'composer server:dev'
+cmd = 'composer server:prod'
