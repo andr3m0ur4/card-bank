@@ -1,2 +1,5 @@
-maker:
-    root_namespace: 'CardCollection'
+when@dev:
+    maker:
+        root_namespace: 'CardCollection'
+        generate_final_classes: true
+        generate_final_entities: false
