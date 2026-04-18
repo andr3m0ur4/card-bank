@@ -35,7 +35,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.89",
-        "phpunit/phpunit": "^12",
+        "phpunit/phpunit": "^12.5",
         "spatie/phpunit-watcher": "^1.24",
         "symfony/browser-kit": "7.4.*",
         "symfony/css-selector": "7.4.*",
@@ -89,7 +89,7 @@
         "services:down": "docker compose down",
         "cs-fixer:check": "vendor/bin/php-cs-fixer check",
         "cs-fixer:fix": "vendor/bin/php-cs-fixer fix",
-        "test": "vendor/bin/phpunit tests",
+        "test": "php bin/phpunit",
         "test:watch": [
             "Composer\\Config::disableProcessTimeout",
             "vendor/bin/phpunit-watcher watch tests < /dev/tty"

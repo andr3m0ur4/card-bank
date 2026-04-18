@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class StatusController extends AbstractController
 {
-    #[Route('/api/v1/status', name: 'show_status')]
+    #[Route('/api/v1/status', name: 'show_status', methods: ['GET'])]
     public function showStatus(EntityManagerInterface $entityManager): JsonResponse
     {
         $updatedAt = (new \DateTime())->format('Y-m-d H:i:s');
@@ -21,7 +21,7 @@ class StatusController extends AbstractController
         $databasename = $_ENV['POSTGRES_DB'];
         $databaseOpenedConnections = $entityManager->getConnection()->fetchOne('SELECT count(*)::int FROM pg_stat_activity WHERE datname = :databaseName', ['databaseName' => $databasename]);
 
-        return new JsonResponse([
+        return $this->json([
             'updated_at' => $updatedAt,
             'dependencies' => [
                 'database' => [
